@@ -11,27 +11,18 @@ const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 const repoRoot = path.resolve(__dirname, '..');
 
 const estampadasDir = path.join(repoRoot, '1-disenos-cortinas-estampadas');
+const patternInfantilDir = path.join(repoRoot, '3-disenos-pattern-infantil');
+
 const data = {
   estampadas: {
     basePath: '1-disenos-cortinas-estampadas',
     categorias: []
   },
-  patternTradicional: {
-    carpeta: '2-disenos-pattern-tradicional',
-    imagenes: []
-  },
   patternInfantil: {
     carpeta: '3-disenos-pattern-infantil',
     imagenes: []
   },
-  empavonados: {
-    carpeta: '4-empavonados',
-    imagenes: []
-  },
-  vinilos: {
-    carpeta: '5-vinilos',
-    imagenes: []
-  }
+  priceListPdf: null
 };
 
 // Convierte el nombre de la carpeta en un título legible.
@@ -44,29 +35,21 @@ const toTitle = (folderName) => {
     .join(' ');
 };
 
-const collator = new Intl.Collator('es');
-
-const listarImagenes = (directoryPath) => {
-  if (!fs.existsSync(directoryPath)) {
-    return [];
-  }
-
-  return fs
-    .readdirSync(directoryPath, { withFileTypes: true })
-    .filter((entry) => entry.isFile())
-    .map((entry) => entry.name)
-    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
-    .sort(collator.compare);
-};
-
 if (fs.existsSync(estampadasDir)) {
   const categoryEntries = fs
     .readdirSync(estampadasDir, { withFileTypes: true })
     .filter((entry) => entry.isDirectory());
 
+  const collator = new Intl.Collator('es');
+
   for (const category of categoryEntries) {
     const categoryPath = path.join(estampadasDir, category.name);
-    const files = listarImagenes(categoryPath);
+    const files = fs
+      .readdirSync(categoryPath, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
+      .sort(collator.compare);
 
     data.estampadas.categorias.push({
       nombre: toTitle(category.name),
@@ -78,19 +61,26 @@ if (fs.existsSync(estampadasDir)) {
   data.estampadas.categorias.sort((a, b) => collator.compare(a.nombre, b.nombre));
 }
 
-data.patternTradicional.imagenes = listarImagenes(
-  path.join(repoRoot, data.patternTradicional.carpeta)
-);
+if (fs.existsSync(patternInfantilDir)) {
+  const collator = new Intl.Collator('es');
+  data.patternInfantil.imagenes = fs
+    .readdirSync(patternInfantilDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name)
+    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
+    .sort(collator.compare);
+}
 
-data.patternInfantil.imagenes = listarImagenes(
-  path.join(repoRoot, data.patternInfantil.carpeta)
-);
+// Busca el primer PDF disponible en la raíz del repositorio
+const pdfFile = fs
+  .readdirSync(repoRoot, { withFileTypes: true })
+  .filter((entry) => entry.isFile())
+  .map((entry) => entry.name)
+  .find((file) => path.extname(file).toLowerCase() === '.pdf');
 
-data.empavonados.imagenes = listarImagenes(
-  path.join(repoRoot, data.empavonados.carpeta)
-);
-
-data.vinilos.imagenes = listarImagenes(path.join(repoRoot, data.vinilos.carpeta));
+if (pdfFile) {
+  data.priceListPdf = pdfFile;
+}
 
 fs.writeFileSync(
   path.join(repoRoot, 'galerias-data.json'),
