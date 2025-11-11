@@ -1,462 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catálogo Digital – Cortinajes Manuel González</title>
-
-  <!-- Tailwind CSS vía CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    .card {
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-    #lightbox {
-      backdrop-filter: blur(6px);
-    }
-  </style>
-</head>
-<body class="bg-slate-100 text-slate-800">
-
-  <!-- Lightbox / visor de imágenes -->
-  <div id="lightbox"
-       class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
-    <div class="max-w-4xl max-h-[90vh] p-4">
-      <button class="mb-3 px-3 py-1 rounded-full bg-white/90 text-slate-800 text-sm"
-              onclick="closeLightbox()">
-        Cerrar ✕
-      </button>
-      <img id="lightbox-img"
-           src=""
-           alt=""
-           class="w-full h-full object-contain rounded-xl bg-white" />
-      <p id="lightbox-caption"
-         class="mt-2 text-sm text-slate-100 text-center"></p>
-    </div>
-  </div>
-
-  <!-- NAV -->
-  <header class="bg-slate-900 text-slate-50 sticky top-0 z-30">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <span class="text-xl font-bold tracking-tight">Cortinajes Manuel González</span>
-        <span class="text-xs bg-amber-400/90 text-slate-900 px-2 py-0.5 rounded-full font-semibold">
-          Catálogo FLASH ROLLER
-        </span>
-      </div>
-      <nav class="hidden md:flex gap-5 text-sm">
-        <a href="#estampadas" class="hover:text-amber-300">Estampadas</a>
-        <a href="#pattern" class="hover:text-amber-300">Pattern</a>
-        <a href="#empavonados" class="hover:text-amber-300">Empavonados</a>
-        <a href="#vinilos" class="hover:text-amber-300">Vinilos</a>
-        <a href="#precios" class="hover:text-amber-300">Precios</a>
-        <a href="#contacto" class="hover:text-amber-300">Contacto</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-50">
-    <div class="max-w-6xl mx-auto px-4 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <p class="uppercase tracking-[0.2em] text-xs text-amber-300 mb-3">
-          Catálogo Digital · Roller & Vinilos
-        </p>
-        <h1 class="text-3xl md:text-4xl font-bold mb-4">
-          Diseños para renovar tus espacios con estilo profesional
-        </h1>
-        <p class="text-sm md:text-base text-slate-200 mb-6">
-          Explora la colección FLASH ROLLER de Cortinajes Manuel González:
-          cortinas estampadas, patrones tradicionales e infantiles,
-          empavonados y vinilos decorativos. Cada sección incluye referencias visuales
-          para que puedas elegir el diseño perfecto.
-        </p>
-        <a href="#estampadas"
-           class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400 text-slate-900 text-sm font-semibold shadow-md hover:bg-amber-300 transition">
-          Ver catálogo ahora
-        </a>
-      </div>
-      <div class="hidden md:block">
-        <div class="grid grid-cols-3 gap-3">
-          <div class="rounded-2xl h-32 bg-[url('1-disenos-cortinas-estampadas/floral/ejemplo.jpg')] bg-cover bg-center bg-slate-700"></div>
-          <div class="rounded-2xl h-40 bg-[url('2-disenos-pattern-tradicional/pattern-001.jpg')] bg-cover bg-center bg-slate-700"></div>
-          <div class="rounded-2xl h-32 bg-[url('5-vinilos/ejemplo.jpg')] bg-cover bg-center bg-slate-700"></div>
-          <div class="rounded-2xl h-32 bg-[url('4-empavonados/emp-001.jpg')] bg-cover bg-center bg-slate-700 col-span-2"></div>
-          <div class="rounded-2xl h-40 bg-[url('1-disenos-cortinas-estampadas/abstracto/ejemplo.jpg')] bg-cover bg-center bg-slate-700"></div>
-        </div>
-        <!-- Reemplaza las rutas de fondo por imágenes reales si quieres -->
-      </div>
-    </div>
-  </section>
-
-  <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
-
-    <!-- 1. DISEÑOS CORTINAS ESTAMPADAS -->
-    <section id="estampadas">
-      <header class="mb-6 flex items-baseline justify-between gap-4">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cortinajes Manuel González – Catálogo FLASH ROLLER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-100 text-slate-800">
+    <header id="inicio" class="bg-slate-900 text-white shadow">
+      <div class="max-w-6xl mx-auto px-4 py-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 class="text-2xl font-bold text-slate-900">
-            1. Diseños Cortinas Estampadas
-          </h2>
-          <p class="text-sm text-slate-600">
-            Diseños organizados por temática. Ideal para dormitorios, living,
-            habitaciones infantiles y espacios creativos.
-          </p>
+          <h1 class="text-2xl font-bold tracking-tight">Cortinajes Manuel González – Catálogo FLASH ROLLER</h1>
+          <p class="text-sm text-slate-300">Explora los diseños disponibles para cortinas roller, vinilos y empavonados.</p>
         </div>
-      </header>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- ABSTRACTO -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Abstracto</h3>
-          <p class="text-xs text-slate-500 mb-3">
-            Formas y composiciones modernas para un estilo vanguardista.
-          </p>
-          <div class="grid grid-cols-3 gap-2 mb-3">
-            <!-- <img src="1-disenos-cortinas-estampadas/abstracto/archivo.jpg" ... onclick="openLightbox(this)" /> -->
-          </div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/abstracto"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- BEBÉ -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Bebé</h3>
-          <p class="text-xs text-slate-500 mb-3">
-            Diseños suaves y tiernos para las piezas de los más pequeños.
-          </p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/bebe"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- CIUDADES -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Ciudades</h3>
-          <p class="text-xs text-slate-500 mb-3">
-            Skylines y paisajes urbanos para ambientes modernos.
-          </p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/ciudades"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- COCINA -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Cocina</h3>
-          <p class="text-xs text-slate-500 mb-3">Motivos gastronómicos y utensilios.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/cocina"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- FLORAL -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Floral</h3>
-          <p class="text-xs text-slate-500 mb-3">Flores, hojas y naturaleza.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/floral"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- INFANTIL -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Infantil</h3>
-          <p class="text-xs text-slate-500 mb-3">Dibujos, personajes y colores vivos.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/infantil"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- JUVENIL HOMBRE -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Juvenil Hombre</h3>
-          <p class="text-xs text-slate-500 mb-3">Diseños pensados para jóvenes.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/juvenil-hombre"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- JUVENIL MUJER -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Juvenil Mujer</h3>
-          <p class="text-xs text-slate-500 mb-3">Diseños modernos y juveniles.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/juvenil-mujer"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- LIBÉLULAS -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Libélulas</h3>
-          <p class="text-xs text-slate-500 mb-3">Motivos delicados y livianos.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/libelulas"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- MAPA -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Mapa</h3>
-          <p class="text-xs text-slate-500 mb-3">Mapas decorativos y educativos.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/mapa"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- MAR -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Mar</h3>
-          <p class="text-xs text-slate-500 mb-3">Motivos marinos y costeros.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/mar"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- MÚSICA -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Música</h3>
-          <p class="text-xs text-slate-500 mb-3">Notas, instrumentos y ritmos.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/musica"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- NATURAL -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Natural</h3>
-          <p class="text-xs text-slate-500 mb-3">Paisajes y elementos naturales.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/natural"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- PÁJAROS -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Pájaros</h3>
-          <p class="text-xs text-slate-500 mb-3">Aves coloridas y delicadas.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/pajaros"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- PIN UP -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Pin Up</h3>
-          <p class="text-xs text-slate-500 mb-3">Estilo retro clásico.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/pin-up"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
-        <!-- VITRALES -->
-        <article class="card bg-white rounded-2xl p-4 flex flex-col">
-          <h3 class="font-semibold text-slate-900 mb-1">Vitrales</h3>
-          <p class="text-xs text-slate-500 mb-3">Efecto vitral en tus ventanas.</p>
-          <div class="grid grid-cols-3 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/1-disenos-cortinas-estampadas/vitrales"
-             class="mt-auto text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver carpeta completa en GitHub
-          </a>
-        </article>
-
+        <nav class="flex flex-wrap gap-3 text-sm text-slate-200">
+          <a href="#estampadas" class="hover:text-amber-300 transition">Estampadas</a>
+          <a href="#pattern-tradicional" class="hover:text-amber-300 transition">Pattern Tradicional</a>
+          <a href="#pattern-infantil" class="hover:text-amber-300 transition">Pattern Infantil</a>
+          <a href="#empavonados" class="hover:text-amber-300 transition">Empavonados</a>
+          <a href="#vinilos" class="hover:text-amber-300 transition">Vinilos</a>
+          <a href="#contacto" class="hover:text-amber-300 transition">Contacto</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <!-- 2 & 3. PATTERN TRADICIONAL / INFANTIL -->
-    <section id="pattern">
-      <header class="mb-6">
-        <h2 class="text-2xl font-bold text-slate-900">
-          2. Pattern Tradicional & 3. Pattern Infantil
-        </h2>
-        <p class="text-sm text-slate-600">
-          Patrones continuos ideales para roller con terminación limpia y uniforme.
-        </p>
-      </header>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <article class="card bg-white rounded-2xl p-4">
-          <h3 class="font-semibold text-slate-900 mb-1">Pattern Tradicional</h3>
-          <p class="text-xs text-slate-500 mb-3">
-            Texturas, tramas y patrones clásicos.
-          </p>
-          <div class="grid grid-cols-4 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/2-disenos-pattern-tradicional"
-             class="text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver todos los patrones tradicionales
-          </a>
-        </article>
-
-        <article class="card bg-white rounded-2xl p-4">
-          <h3 class="font-semibold text-slate-900 mb-1">Pattern Infantil</h3>
-          <p class="text-xs text-slate-500 mb-3">
-            Patrones continuos con temática infantil.
-          </p>
-          <div class="grid grid-cols-4 gap-2 mb-3"></div>
-          <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/3-disenos-pattern-infantil"
-             class="text-xs text-amber-600 hover:text-amber-500 underline">
-            Ver todos los patrones infantiles
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <!-- 4. EMPAVONADOS -->
-    <section id="empavonados">
-      <header class="mb-6">
-        <h2 class="text-2xl font-bold text-slate-900">
-          4. Empavonados
-        </h2>
-        <p class="text-sm text-slate-600">
-          Diseños empavonados para dar privacidad a oficinas, baños y vidrios interiores,
-          manteniendo la entrada de luz.
-        </p>
-      </header>
-
-      <article class="card bg-white rounded-2xl p-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3"></div>
-        <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/4-empavonados"
-           class="text-xs text-amber-600 hover:text-amber-500 underline">
-          Ver carpeta completa de empavonados
-        </a>
-      </article>
-    </section>
-
-    <!-- 5. VINILOS -->
-    <section id="vinilos">
-      <header class="mb-6">
-        <h2 class="text-2xl font-bold text-slate-900">
-          5. Vinilos decorativos
-        </h2>
-        <p class="text-sm text-slate-600">
-          Vinilos decorativos para muros, vidrios y mobiliario. Ideales para
-          dar identidad a negocios, oficinas y hogares.
-        </p>
-      </header>
-
-      <article class="card bg-white rounded-2xl p-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3"></div>
-        <a href="https://github.com/ChristianSPP/Cortinajes-Manuel-Gonzalez/tree/main/5-vinilos"
-           class="text-xs text-amber-600 hover:text-amber-500 underline">
-          Ver carpeta completa de vinilos
-        </a>
-      </article>
-    </section>
-
-    <!-- LISTA DE PRECIOS -->
-    <section id="precios">
-      <header class="mb-3">
-        <h2 class="text-2xl font-bold text-slate-900">
-          Lista de precios
-        </h2>
-      </header>
-      <p class="text-sm text-slate-600 mb-3">
-        Consulta la lista de precios de referencia para la colección FLASH ROLLER.
-        Los valores pueden variar según medidas, instalación y especificaciones del proyecto.
-      </p>
-      <!-- Cambia lista-de-precios.pdf por el nombre real del PDF si es distinto -->
-      <a href="lista-de-precios.pdf"
-         class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-slate-50 text-sm font-semibold hover:bg-slate-800">
-        Descargar lista de precios (PDF)
-      </a>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="pb-10">
-      <header class="mb-3">
-        <h2 class="text-2xl font-bold text-slate-900">
-          Contacto
-        </h2>
-      </header>
-      <p class="text-sm text-slate-600 mb-3">
-        Para cotizaciones, dudas o proyectos especiales, contáctanos directamente:
-      </p>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="card bg-white rounded-2xl p-4 text-sm space-y-1">
-          <p><span class="font-semibold">Cortinajes Manuel González</span></p>
-          <p>📍 Osorno, Región de Los Lagos, Chile</p>
-          <p>📱 WhatsApp: <a href="https://wa.me/569XXXXXXXX" class="text-amber-600 underline">+56 9 XXXXXXXX</a></p>
-          <p>📧 Correo: <a href="mailto:cortinajesmanuelg@gmail.com" class="text-amber-600 underline">cortinajesmanuelg@gmail.com</a></p>
+    <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
+      <section id="estampadas" class="space-y-5">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold text-slate-900">Diseños Cortinas Estampadas</h2>
+          <p class="text-sm text-slate-600">Colección organizada por temática para encontrar rápidamente el estilo que buscas.</p>
         </div>
-        <div class="card bg-slate-900 text-slate-50 rounded-2xl p-4 text-sm">
-          <p class="font-semibold mb-1">Cómo usar este catálogo</p>
-          <ul class="list-disc list-inside space-y-1 text-slate-200/90">
-            <li>Explora las secciones por tipo de diseño.</li>
-            <li>Haz clic sobre las miniaturas para ver la imagen ampliada.</li>
-            <li>Copia el enlace de la sección o imagen para compartirlo con tus clientes.</li>
-          </ul>
+        <div id="estampadas-nav" class="flex flex-wrap gap-2 text-sm"></div>
+        <div id="galeria-estampadas" class="grid gap-6"></div>
+      </section>
+
+      <section id="pattern-tradicional" class="space-y-5">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold text-slate-900">Pattern Tradicional</h2>
+          <p class="text-sm text-slate-600">Patrones clásicos numerados para proyectos corporativos y residenciales.</p>
         </div>
+        <div id="galeria-pattern-tradicional" class="grid gap-4"></div>
+      </section>
+
+      <section id="pattern-infantil" class="space-y-5">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold text-slate-900">Pattern Infantil</h2>
+          <p class="text-sm text-slate-600">Paleta de colores suaves y motivos infantiles en formato roller.</p>
+        </div>
+        <div id="galeria-pattern-infantil" class="grid gap-4"></div>
+      </section>
+
+      <section id="empavonados" class="space-y-5">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold text-slate-900">Empavonados</h2>
+          <p class="text-sm text-slate-600">Diseños traslúcidos que entregan privacidad sin perder luminosidad.</p>
+        </div>
+        <div id="galeria-empavonados" class="grid gap-4"></div>
+      </section>
+
+      <section id="vinilos" class="space-y-5">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold text-slate-900">Vinilos</h2>
+          <p class="text-sm text-slate-600">Vinilos decorativos listos para personalizar muros, vidrios y mobiliario.</p>
+        </div>
+        <div id="galeria-vinilos" class="grid gap-4"></div>
+      </section>
+
+      <section id="contacto" class="space-y-3">
+        <h2 class="text-3xl font-bold text-slate-900">Contacto</h2>
+        <p class="text-sm text-slate-600">Cortinajes Manuel González<br />Osorno, Región de Los Lagos, Chile</p>
+        <ul class="text-sm text-slate-600 space-y-1">
+          <li>WhatsApp: <a href="https://wa.me/569XXXXXXXX" class="text-amber-600 hover:text-amber-500 underline" target="_blank" rel="noopener">+56 9 XXXXXXXX</a></li>
+          <li>Correo: <a href="mailto:cortinajesmanuelg@gmail.com" class="text-amber-600 hover:text-amber-500 underline">cortinajesmanuelg@gmail.com</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-300 text-xs py-4">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <span>© <span id="anio-actual"></span> Cortinajes Manuel González</span>
+        <span>Catálogo FLASH ROLLER · Uso comercial con clientes</span>
       </div>
-    </section>
+    </footer>
 
-  </main>
-
-  <footer class="bg-slate-900 text-slate-400 text-xs py-4">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-2">
-      <span>© <span id="year"></span> Cortinajes Manuel González · Catálogo FLASH ROLLER</span>
-      <span>Desarrollado para uso comercial con clientes.</span>
+    <div id="lightbox" class="fixed inset-0 hidden bg-black/70 items-center justify-center z-50">
+      <div class="relative max-w-5xl w-full px-4">
+        <button type="button" id="lightbox-cerrar" class="absolute -top-10 right-4 text-sm font-semibold text-white hover:text-amber-300">Cerrar ✕</button>
+        <img id="lightbox-imagen" src="" alt="" class="max-h-[80vh] w-full object-contain rounded-lg shadow-lg" />
+        <p id="lightbox-descripcion" class="mt-3 text-sm text-slate-100 text-center"></p>
+      </div>
     </div>
-  </footer>
 
-  <script>
-    // Año dinámico
-    document.getElementById("year").textContent = new Date().getFullYear();
+    <button
+      type="button"
+      id="boton-volver-arriba"
+      class="fixed bottom-6 right-6 z-40 px-4 py-2 rounded-full bg-amber-500 text-slate-900 font-semibold shadow-lg transition-opacity duration-300 opacity-0 pointer-events-none"
+      aria-label="Volver al inicio"
+    >
+      ↑ Inicio
+    </button>
 
-    // Lightbox
-    function openLightbox(imgElement) {
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-      const lightboxCaption = document.getElementById("lightbox-caption");
-
-      lightboxImg.src = imgElement.src;
-      lightboxCaption.textContent = imgElement.alt || "";
-      lightbox.classList.remove("hidden");
-      lightbox.classList.add("flex");
-    }
-
-    function closeLightbox() {
-      const lightbox = document.getElementById("lightbox");
-      lightbox.classList.add("hidden");
-      lightbox.classList.remove("flex");
-    }
-
-    document.getElementById("lightbox").addEventListener("click", function(e) {
-      if (e.target.id === "lightbox") {
-        closeLightbox();
-      }
-    });
-  </script>
-</body>
+    <script src="catalogo.js"></script>
+  </body>
 </html>
-
