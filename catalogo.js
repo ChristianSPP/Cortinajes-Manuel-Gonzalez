@@ -1,36 +1,49 @@
 // catalogo.js
 // ----------------------------
 // Este archivo genera dinámicamente todas las galerías del catálogo.
-// Ejecuta `node scripts/generar-galerias.js` cuando agregues, elimines o renombres
-// imágenes en el repositorio para mantener actualizado `galerias-data.json`.
+// Ajusta las configuraciones de "GALERIAS_NUMERADAS" para agregar/quitar rangos
+// y vuelve a ejecutar "node scripts/generar-galerias.js" si incorporas nuevas
+// carpetas dentro de "1-disenos-cortinas-estampadas" o cambias archivos de
+// "3-disenos-pattern-infantil". El script actualizará galerias-data.json con
+// los nombres de archivos reales.
 
 const DATA_JSON_PATH = 'galerias-data.json';
 
-const GRID_MINIATURAS = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3';
-const GRID_ESTAMPADAS = 'grid gap-2 grid-cols-2 sm:grid-cols-3';
-
-const GALERIAS_LISTA = [
+const GALERIAS_NUMERADAS = [
   {
     idContenedor: 'galeria-pattern-tradicional',
-    clave: 'patternTradicional',
+    carpeta: '2-disenos-pattern-tradicional',
+    prefijo: 'pattern-',
+    sufijo: '_baja.jpg',
+    relleno: 3,
+    inicio: 1,
+    fin: 42,
     altBase: 'Pattern tradicional'
   },
   {
-    idContenedor: 'galeria-pattern-infantil',
-    clave: 'patternInfantil',
-    altBase: 'Pattern infantil'
-  },
-  {
     idContenedor: 'galeria-empavonados',
-    clave: 'empavonados',
+    carpeta: '4-empavonados',
+    prefijo: 'emp-',
+    sufijo: '_baja.jpg',
+    relleno: 4,
+    inicio: 1,
+    fin: 56,
     altBase: 'Empavonado'
   },
   {
     idContenedor: 'galeria-vinilos',
-    clave: 'vinilos',
+    carpeta: '5-vinilos',
+    prefijo: 'vin-deco-',
+    sufijo: '-baja.jpg',
+    relleno: 4,
+    inicio: 1,
+    fin: 100,
     altBase: 'Vinilo decorativo'
   }
 ];
+
+const GRID_MINIATURAS = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3';
+const GRID_ESTAMPADAS = 'grid gap-2 grid-cols-2 sm:grid-cols-3';
 
 const lightboxState = {
   overlay: null,
@@ -40,18 +53,23 @@ const lightboxState = {
 
 document.addEventListener('DOMContentLoaded', async () => {
   inicializarLightbox();
-  inicializarBotonInicio();
   actualizarAnio();
 
   try {
     const data = await cargarDatos();
     if (data) {
       renderizarEstampadas(data.estampadas);
-      renderizarGaleriasDesdeListas(data);
+      renderizarPatternInfantil(data.patternInfantil);
+      actualizarEnlacePrecios(data.priceListPdf);
+    } else {
+      actualizarEnlacePrecios(null);
     }
   } catch (error) {
     console.error('No fue posible cargar galerias-data.json', error);
+    actualizarEnlacePrecios(null);
   }
+
+  GALERIAS_NUMERADAS.forEach(renderizarGaleriaNumerada);
 });
 
 async function cargarDatos() {
@@ -62,35 +80,28 @@ async function cargarDatos() {
   return respuesta.json();
 }
 
-function renderizarGaleriasDesdeListas(data) {
-  GALERIAS_LISTA.forEach((config) => {
-    const segmento = data?.[config.clave];
-    if (!segmento || !Array.isArray(segmento.imagenes) || segmento.imagenes.length === 0) {
-      return;
-    }
+function renderizarGaleriaNumerada(config) {
+  const contenedor = document.getElementById(config.idContenedor);
+  if (!contenedor) return;
 
-    const contenedor = document.getElementById(config.idContenedor);
-    if (!contenedor) {
-      return;
-    }
+  contenedor.innerHTML = '';
+  const tarjeta = document.createElement('article');
+  tarjeta.className = 'bg-white rounded-2xl shadow-sm p-4';
 
-    contenedor.innerHTML = '';
-    const tarjeta = document.createElement('article');
-    tarjeta.className = 'bg-white rounded-2xl shadow-sm p-4';
+  const cuadricula = document.createElement('div');
+  cuadricula.className = GRID_MINIATURAS;
 
-    const cuadricula = document.createElement('div');
-    cuadricula.className = GRID_MINIATURAS;
+  for (let numero = config.inicio; numero <= config.fin; numero += 1) {
+    const referencia = padStart(numero, config.relleno);
+    const archivo = `${config.prefijo}${referencia}${config.sufijo}`;
+    const ruta = `${config.carpeta}/${archivo}`;
+    const alt = `${config.altBase} ${referencia}`;
+    const miniatura = crearImagenMiniatura(ruta, alt);
+    cuadricula.appendChild(miniatura);
+  }
 
-    segmento.imagenes.forEach((archivo) => {
-      const ruta = `${segmento.carpeta}/${archivo}`;
-      const alt = `${config.altBase} – ${formatearTextoAlt(archivo)}`;
-      const miniatura = crearImagenMiniatura(ruta, alt);
-      cuadricula.appendChild(miniatura);
-    });
-
-    tarjeta.appendChild(cuadricula);
-    contenedor.appendChild(tarjeta);
-  });
+  tarjeta.appendChild(cuadricula);
+  contenedor.appendChild(tarjeta);
 }
 
 function renderizarEstampadas(estampadasData) {
